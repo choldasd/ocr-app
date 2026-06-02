@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* ========================================
+   OCR AI Platform — Design System (Tailwind v4)
+   ======================================== */
+
+@theme {
+  /* Brand colors */
+  --color-brand-50: oklch(0.97 0.01 250);
+  --color-brand-100: oklch(0.93 0.02 250);
+  --color-brand-200: oklch(0.86 0.05 250);
+  --color-brand-300: oklch(0.76 0.09 250);
+  --color-brand-400: oklch(0.65 0.15 250);
+  --color-brand-500: oklch(0.55 0.19 250);
+  --color-brand-600: oklch(0.47 0.20 250);
+  --color-brand-700: oklch(0.40 0.18 250);
+  --color-brand-800: oklch(0.33 0.14 250);
+  --color-brand-900: oklch(0.27 0.10 250);
+
+  /* Accent / teal */
+  --color-accent-400: oklch(0.75 0.14 180);
+  --color-accent-500: oklch(0.65 0.17 180);
+  --color-accent-600: oklch(0.55 0.16 180);
+
+  /* Success / warning / error */
+  --color-success-500: oklch(0.68 0.17 145);
+  --color-warning-500: oklch(0.78 0.15 75);
+  --color-error-500: oklch(0.60 0.20 25);
+
+  /* Surface colors (dark mode base) */
+  --color-surface-0: oklch(0.13 0.01 250);
+  --color-surface-50: oklch(0.16 0.01 250);
+  --color-surface-100: oklch(0.20 0.01 250);
+  --color-surface-200: oklch(0.25 0.01 250);
+  --color-surface-300: oklch(0.32 0.01 250);
+
+  /* Font */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Light mode (default)
+   ======================================== */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-input: #f1f5f9;
+  --bg-hover: #f1f5f9;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --border-default: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+  --shadow-glow: 0 0 40px -6px oklch(0.55 0.19 250 / 0.25);
+
+  --gradient-hero: linear-gradient(135deg, oklch(0.55 0.19 250) 0%, oklch(0.65 0.17 180) 100%);
+}
+
+/* ========================================
+   Dark mode
+   ======================================== */
+.dark {
+  --bg-primary: #0b0f1a;
+  --bg-secondary: #111827;
+  --bg-card: #151c2c;
+  --bg-input: #1e293b;
+  --bg-hover: #1e293b;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --border-default: #1e293b;
+  --border-strong: #334155;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-glow: 0 0 60px -6px oklch(0.55 0.19 250 / 0.35);
+}
+
+/* ========================================
+   Utility classes using CSS variables
+   ======================================== */
+.bg-primary   { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-card      { background-color: var(--bg-card); }
+.bg-input     { background-color: var(--bg-input); }
+
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted     { color: var(--text-muted); }
+
+.border-default { border-color: var(--border-default); }
+.border-strong  { border-color: var(--border-strong); }
+
+.shadow-card { box-shadow: var(--shadow-md); }
+.shadow-glow { box-shadow: var(--shadow-glow); }
+
+/* Glassmorphism card */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+/* Scan line for OCR animation */
+@keyframes scan-line {
+  0%   { top: 0%; opacity: 1; }
+  50%  { opacity: 0.6; }
+  100% { top: 95%; opacity: 1; }
+}
+
+.animate-scan-line {
+  animation: scan-line 2.5s ease-in-out infinite alternate;
+}
+
+/* Pulse ring */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.9); opacity: 0.7; }
+  50%  { transform: scale(1.05); opacity: 0.3; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+/* Float */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* Shimmer for loading skeleton */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--bg-input) 25%, var(--border-default) 50%, var(--bg-input) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Confidence meter colors */
+.confidence-high   { color: oklch(0.68 0.17 145); }
+.confidence-medium { color: oklch(0.78 0.15 75); }
+.confidence-low    { color: oklch(0.60 0.20 25); }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
