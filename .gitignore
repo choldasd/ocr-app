@@ -24,6 +24,7 @@ dist/
 # Local Data / Uploads / Logs
 data/uploads/*
 data/processed/*
+data/output/*
 data/logs/*
 # Except gitkeep files if you want to track empty directories
 !data/uploads/.gitkeep
