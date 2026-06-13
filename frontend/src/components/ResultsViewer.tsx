@@ -272,8 +272,16 @@ export default function ResultsViewer({ data, onReset }: ResultsViewerProps) {
             }}
           >
             {/* Page header */}
-            <button
+            <div
+              role="button"
+              tabIndex={0}
               onClick={() => togglePage(page.page)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  togglePage(page.page);
+                }
+              }}
               className="w-full flex items-center justify-between p-4 cursor-pointer transition-colors"
               style={{ color: "var(--text-primary)" }}
             >
@@ -329,7 +337,7 @@ export default function ResultsViewer({ data, onReset }: ResultsViewerProps) {
                   <ChevronDown className="w-4 h-4" style={{ color: "var(--text-muted)" }} />
                 )}
               </div>
-            </button>
+            </div>
 
             {/* Extracted text */}
             <AnimatePresence>

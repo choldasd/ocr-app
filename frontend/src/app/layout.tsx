@@ -30,6 +30,7 @@ export default function RootLayout({
       <body
         className="min-h-screen transition-colors duration-300"
         style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}
+        suppressHydrationWarning
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>

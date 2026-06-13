@@ -30,6 +30,9 @@ data/logs/*
 !data/processed/.gitkeep
 !data/logs/.gitkeep
 
+#Requirements
+requirements/*
+
 # Environment files
 .env
 .env.local

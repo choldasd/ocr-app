@@ -3,12 +3,18 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from .config import settings
 
-# In production we might want to configure pool size to prevent RAM spikes,
-# but for local SQLite/MySQL with 1 worker we keep it simple.
+is_sqlite = settings.DATABASE_URL.startswith("sqlite")
+
+engine_args = {}
+if is_sqlite:
+    engine_args["connect_args"] = {"check_same_thread": False}
+else:
+    engine_args["pool_recycle"] = 3600
+    engine_args["pool_pre_ping"] = True
+
 engine = create_engine(
     settings.DATABASE_URL,
-    pool_recycle=3600,
-    pool_pre_ping=True
+    **engine_args
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -22,3 +28,4 @@ def get_db():
         yield db
     finally:
         db.close()
+

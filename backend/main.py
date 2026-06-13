@@ -6,6 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from .core.config import settings
 from .core.database import engine, Base
 from .api.ocr import router as ocr_router
+from .api.batch import router as batch_router
+from .models import Batch, Job  # ensure tables are registered with Base
 
 # --- Logging setup ---
 log_file = os.path.join(settings.LOGS_DIR, "ocr_app.log")
@@ -40,6 +42,7 @@ app.add_middleware(
 
 # --- Register routers ---
 app.include_router(ocr_router)
+app.include_router(batch_router)
 
 
 @app.get("/")
